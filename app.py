@@ -6,8 +6,10 @@ import pandas as pd
 import bokeh
 from bokeh.plotting import figure, show
 from bokeh.embed import components
-bv = bokeh.__version__
+import os
 
+bv = bokeh.__version__
+sk = os.environ['mykey']
 
 app = Flask(__name__)
 app.vars={}
@@ -31,7 +33,7 @@ def index():
 # download the stock price data and make plot using Bokeh
 @app.route('/plot',methods=['GET','POST'])
 def plot():
-    url = 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?ticker='+app.vars['ticker']+'&qopts.columns=date,open,close,adj_open,adj_close&api_key=TPgzV6Ncqutqdr1YEff2' 
+    url = 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?ticker='+app.vars['ticker']+'&qopts.columns=date,open,close,adj_open,adj_close&api_key='+sk 
     data = requests.get(url)
     data_formatted = data.json()
     col = data_formatted['datatable']['columns']
