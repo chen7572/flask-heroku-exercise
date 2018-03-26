@@ -13,7 +13,7 @@ A [finished example](https://lemurian.herokuapp.com) that demonstrates some basi
 - Git clone the existing template repository.
 - `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
   contain some default settings.
-- There is some boilerplate HTML in `templates/`
+- There is some boilerplate HTML in `templates/`, index.html is updated to show the index page, and plot.html is created to show the stock price plot.
 - Create Heroku application with `heroku create <app_name>` or leave blank to
   auto-generate a name.
 - (Suggested) Use the [conda buildpack](https://github.com/kennethreitz/conda-buildpack).

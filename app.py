@@ -17,6 +17,7 @@ feat = ['Open','Close','Adjusted Open','Adjusted Close']
 def main():
     return redirect('/index')
 
+# set up the index page where user types in ticker and selects price type
 @app.route('/index',methods=['GET','POST'])
 def index():
     if request.method == 'GET':
@@ -24,9 +25,10 @@ def index():
     else:
         #return 'request.method was not a GET!'
         app.vars['ticker'] = request.form['ticker'].upper()
-        app.vars['select'] = [feat[q] for q in range(4) if feat[q] in request.form.values()]
+        app.vars['select'] = [feat[i] for i in range(4) if feat[i] in request.form.values()]
         return redirect('/plot')
 
+# download the stock price data and make plot using Bokeh
 @app.route('/plot',methods=['GET','POST'])
 def plot():
     url = 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?ticker='+app.vars['ticker']+'&qopts.columns=date,open,close,adj_open,adj_close&api_key=TPgzV6Ncqutqdr1YEff2' 
